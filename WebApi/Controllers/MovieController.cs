@@ -28,6 +28,7 @@ namespace WebApi.Controllers
             return Ok(result);
         }
 
+        [ResponseType(typeof(Movie))]
         public IHttpActionResult Post(Movie movie)
         {
             db.Movies.Add(movie);
