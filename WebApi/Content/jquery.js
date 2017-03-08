@@ -1,7 +1,6 @@
 ﻿$().ready(function () {
 
     $("#getM").click(function() {
-
         $.get("http://localhost:50692/api/movie", function(mlist) {
             console.log(mlist);
             render(mlist);
@@ -19,21 +18,21 @@
     }
     
     $("#getR").click(function () {
-
         $.get("http://localhost:50692/api/review", function (rlist) {
             console.log(rlist);
-            render(rlist);
+            render1(rlist);
         });
 
     });
 
-    function render(reviews) {
+    function render1(reviews) {
         var rTt = $("#rtitles");
         rTt.empty();
         for (idx in reviews) {
             var rTitle = reviews[idx].Title.Title;
-
-            rTt.append("<li>" + rTitle + "</li>");
+            var rName = reviews[idx].RaterName.Name;
+            var rating = reviews[idx].Rating;
+            rTt.append("<li>" + rTitle + " - " + rName + " - " + rating + "</li>");
         }
     }
 
@@ -41,19 +40,19 @@
 
         $.get("http://localhost:50692/api/rater", function (rtlist) {
             console.log(rtlist);
-            render(rtlist);
+            render2(rtlist);
         });
 
     });
 
-    function render(raters) {
-        var rTt = $("#raters");
-        rTt.empty();
+    function render2(raters) {
+        var raTt = $("#raters");
+        raTt.empty();
         for (idx in raters) {
             var name = raters[idx].Name;
             var age = raters[idx].Age;
             var occ = raters[idx].Occupation
-            rTt.append("<li>" + name + ' ' + age + ' ' + occ + "</li>");
+            raTt.append("<li>" + name + ' ' + age + ' ' + occ + "</li>");
         }
     }
 
